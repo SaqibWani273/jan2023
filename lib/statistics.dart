@@ -5,6 +5,37 @@ class Statistics extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(child: Center(child: Text("Stastistics"),),);
+    return Scaffold(
+      appBar: AppBar(
+          elevation: 0.0,
+          backgroundColor: Colors.white,
+          title: Container(
+            // color: Colors.white,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: const [
+                IconButton(
+                  onPressed: null,
+                  icon: Icon(
+                    Icons.arrow_back_ios_new,
+                    color: Colors.black,
+                  ),
+                ),
+                Text(
+                  'Statistics',
+                  style: TextStyle(color: Colors.black),
+                ),
+                IconButton(
+                  color: Colors.black,
+                  onPressed: null,
+                  icon: Icon(
+                    Icons.download_sharp,
+                    color: Colors.black,
+                  ),
+                )
+              ],
+            ),
+          )),
+    );
   }
 }

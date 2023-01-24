@@ -40,6 +40,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
           body: TabBarView(
             controller: _tabController,
