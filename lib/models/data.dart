@@ -24,4 +24,24 @@ class Data extends ChangeNotifier {
       'icon_filled': Icons.account_box_rounded,
     }
   ];
+  List<Map<String, dynamic>> listTileData = [
+    {
+      'title': 'StarBucks',
+      'subtitle': 'Jan 12 2022',
+      'image': 'assets/images/starbucks.png',
+      'trailingText': '- \$ 150.00',
+    },
+    {
+      'title': 'Transfer',
+      'subtitle': 'Yesterday',
+      'image': 'assets/images/transfer.png',
+      'trailingText': '-\$ 85.00',
+    },
+    {
+      'title': 'Youtube',
+      'subtitle': 'Jan 16,2022',
+      'image': 'assets/images/youtube.png',
+      'trailingText': '-\$ 11.99',
+    },
+  ];
 }
