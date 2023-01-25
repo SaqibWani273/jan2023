@@ -1,11 +1,10 @@
-import 'package:flutter/cupertino.dart';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 
 class Data extends ChangeNotifier {
   BuildContext context;
   Data(this.context);
-
   List<Map<String, dynamic>> bottomIcons = [
     {
       'icon_outlined': Icons.home_outlined,
@@ -30,18 +29,21 @@ class Data extends ChangeNotifier {
       'subtitle': 'Jan 12 2022',
       'image': 'assets/images/starbucks.png',
       'trailingText': '- \$ 150.00',
+      'isSelected': false,
     },
     {
       'title': 'Transfer',
       'subtitle': 'Yesterday',
       'image': 'assets/images/transfer.png',
       'trailingText': '-\$ 85.00',
+      'isSelected': true,
     },
     {
       'title': 'Youtube',
       'subtitle': 'Jan 16,2022',
       'image': 'assets/images/youtube.png',
       'trailingText': '-\$ 11.99',
+      'isSelected': false,
     },
   ];
 }

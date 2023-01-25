@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -7,6 +9,27 @@ import 'models/data.dart';
 void main() {
   runApp(
     MaterialApp(
+      theme: ThemeData(
+        primarySwatch: Colors.teal,
+        textTheme: TextTheme(
+          headline3: const TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.w700,
+            color: Colors.black87,
+          ),
+          headline4: const TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w700,
+            color: Colors.black87,
+          ),
+          headline2: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.w600,
+            color: Colors.red[400],
+          ),
+        ),
+      ),
+      debugShowCheckedModeBanner: false,
       home: ChangeNotifierProvider(
         create: (context) => Data(context),
         child: Consumer<Data>(
@@ -39,50 +62,48 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-          body: TabBarView(
+    log('main.dart build');
+    return Scaffold(
+        body: TabBarView(
+          controller: _tabController,
+          children: [
+            Container(),
+            const Statistics(),
+            Container(),
+            Container(),
+          ],
+        ),
+        bottomNavigationBar: Container(
+          color: Colors.white,
+          height: 90.0,
+          child: TabBar(
             controller: _tabController,
-            children: [
-              Container(),
-              const Statistics(),
-              Container(),
-              Container(),
-            ],
-          ),
-          bottomNavigationBar: Container(
-            color: Colors.white,
-            height: 90.0,
-            child: TabBar(
-              controller: _tabController,
-              labelColor: Colors.black,
-              indicatorColor: Colors.transparent,
-              tabs: widget._data.bottomIcons
-                  .asMap()
-                  .map(
-                    (int index, Map value) => MapEntry(
-                      index,
-                      IconButton(
-                        onPressed: () {
-                          changeIndex(index);
-                        },
-                        icon: Icon(
-                          _tabController.index == index
-                              ? value['icon_filled']
-                              : value['icon_outlined'],
-                          size: 40,
-                          color: _tabController.index == index
-                              ? Colors.teal[900]
-                              : Colors.black,
-                        ),
+            labelColor: Colors.black,
+            indicatorColor: Colors.transparent,
+            tabs: widget._data.bottomIcons
+                .asMap()
+                .map(
+                  (int index, Map value) => MapEntry(
+                    index,
+                    IconButton(
+                      onPressed: () {
+                        changeIndex(index);
+                      },
+                      icon: Icon(
+                        _tabController.index == index
+                            ? value['icon_filled']
+                            : value['icon_outlined'],
+                        size: 40,
+                        color: _tabController.index == index
+                            ? Theme.of(context).primaryColor
+                            : Colors.black,
                       ),
                     ),
-                  )
-                  .values
-                  .toList(),
-            ),
-          )),
-    );
+                  ),
+                )
+                .values
+                .toList(),
+          ),
+        ));
   }
 }
