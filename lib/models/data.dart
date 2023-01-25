@@ -53,4 +53,16 @@ class Data extends ChangeNotifier {
     'Month',
     'Year',
   ];
+  List months = [
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
 }

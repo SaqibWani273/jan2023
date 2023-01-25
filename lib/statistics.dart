@@ -57,38 +57,109 @@ class _StatisticsState extends State<Statistics> {
           children: [
             Expanded(
               flex: 6,
-              child: Container(
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: _data.spendingTime
-                          .map(
-                            (spendTime) => TextButton(
-                              onPressed: null,
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: _data.spendingTime
+                        .map(
+                          (spendTime) => TextButton(
+                            onPressed: null,
+                            style: _data.currentSpendingTime == spendTime
+                                ? TextButton.styleFrom(
+                                    backgroundColor:
+                                        Theme.of(context).primaryColorDark,
+                                    fixedSize: const Size(100, 40),
+                                    shape: const RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10.0))))
+                                : null,
+                            child: Text(
+                              spendTime,
                               style: _data.currentSpendingTime == spendTime
-                                  ? TextButton.styleFrom(
-                                      backgroundColor:
-                                          Theme.of(context).primaryColorDark,
-                                      fixedSize: Size(100, 40),
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(10.0))))
+                                  ? const TextStyle(
+                                      color: Colors.white,
+                                    )
                                   : null,
-                              child: Text(
-                                spendTime,
-                                style: _data.currentSpendingTime == spendTime
-                                    ? TextStyle(
-                                        color: Colors.white,
-                                      )
-                                    : null,
-                              ),
                             ),
-                          )
-                          .toList(),
+                          ),
+                        )
+                        .toList(),
+                  ),
+                  Stack(alignment: Alignment.topRight, children: [
+                    Container(),
+                    Container(
+                      height: 40.0,
+                      width: 150.0,
+                      margin: const EdgeInsets.only(right: 30.0, top: 30.0),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8.0,
+                      ),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8.0),
+                          border: Border.all(
+                            color: Colors.black,
+                            width: 1.0,
+                          )),
+                      child: DropdownButtonHideUnderline(
+                        child: DropdownButton(
+                          //to increase the height
+                          isExpanded: true,
+                          icon: const Icon(
+                            Icons.expand_more,
+                            color: Colors.black,
+                          ),
+                          value: 'Expense',
+                          items: [
+                            'Expense',
+                            'Expense1',
+                            'Expense2',
+                            'Expense3',
+                          ]
+                              .map((String value) => DropdownMenuItem(
+                                  value: value,
+                                  child: Text(
+                                    value,
+                                    style: const TextStyle(
+                                      color: Colors.black54,
+                                    ),
+                                  )))
+                              .toList(),
+                          onChanged: (value) {},
+                        ),
+                      ),
                     ),
-                  ],
-                ),
+                  ]),
+                  Container(
+                    //curve and months container
+                    child: Column(children: [
+                      Container(
+                          //for curve
+                          ),
+                      Container(
+                        margin: EdgeInsets.only(top: 200),
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: _data.months
+                                  .map((month) => Row(
+                                        children: [
+                                          Text(
+                                            month,
+                                            style: TextStyle(fontSize: 20.0),
+                                          ),
+                                          SizedBox(
+                                            width: 42,
+                                          )
+                                        ],
+                                      ))
+                                  .toList()),
+                        ),
+                      )
+                    ]),
+                  )
+                ],
               ),
             ),
             Expanded(
