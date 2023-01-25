@@ -46,4 +46,11 @@ class Data extends ChangeNotifier {
       'isSelected': false,
     },
   ];
+  String currentSpendingTime = 'Day';
+  List spendingTime = [
+    'Day',
+    'Week',
+    'Month',
+    'Year',
+  ];
 }

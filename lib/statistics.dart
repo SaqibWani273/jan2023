@@ -21,6 +21,7 @@ class _StatisticsState extends State<Statistics> {
           //to change the top statusbar color
           systemOverlayStyle: SystemUiOverlayStyle(
             statusBarColor: Colors.grey[50],
+            statusBarIconBrightness: Brightness.dark,
           ),
           elevation: 0.0,
           backgroundColor: Colors.grey[50],
@@ -56,7 +57,39 @@ class _StatisticsState extends State<Statistics> {
           children: [
             Expanded(
               flex: 6,
-              child: Container(),
+              child: Container(
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: _data.spendingTime
+                          .map(
+                            (spendTime) => TextButton(
+                              onPressed: null,
+                              style: _data.currentSpendingTime == spendTime
+                                  ? TextButton.styleFrom(
+                                      backgroundColor:
+                                          Theme.of(context).primaryColorDark,
+                                      fixedSize: Size(100, 40),
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(10.0))))
+                                  : null,
+                              child: Text(
+                                spendTime,
+                                style: _data.currentSpendingTime == spendTime
+                                    ? TextStyle(
+                                        color: Colors.white,
+                                      )
+                                    : null,
+                              ),
+                            ),
+                          )
+                          .toList(),
+                    ),
+                  ],
+                ),
+              ),
             ),
             Expanded(
               flex: 5,
@@ -98,7 +131,8 @@ class _StatisticsState extends State<Statistics> {
                                       borderRadius: BorderRadius.circular(20.0),
                                     ),
                                     selected: listTileMap['isSelected'],
-                                    selectedTileColor: Colors.teal,
+                                    selectedTileColor:
+                                        Theme.of(context).primaryColorDark,
                                     tileColor: Colors.grey[100],
                                     leading: CircleAvatar(
                                       backgroundImage:
