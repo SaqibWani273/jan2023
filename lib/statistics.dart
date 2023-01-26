@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:bubble/bubble.dart';
 import 'package:flutter/services.dart';
 import 'custom_painter.dart';
 import 'models/data.dart';
@@ -22,11 +23,11 @@ class _StatisticsState extends State<Statistics> {
       appBar: AppBar(
           //to change the top statusbar color
           systemOverlayStyle: SystemUiOverlayStyle(
-            statusBarColor: Colors.grey[50],
-            statusBarIconBrightness: Brightness.dark,
+            statusBarColor: Colors.white,
+            //  statusBarIconBrightness: Brightness.dark,
           ),
           elevation: 0.0,
-          backgroundColor: Colors.grey[50],
+          backgroundColor: Colors.white,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -54,7 +55,7 @@ class _StatisticsState extends State<Statistics> {
       body: Container(
         height: mainContainerHeight,
         width: MediaQuery.of(context).size.width,
-        color: Colors.grey[50],
+        color: Colors.white,
         child: Column(
           children: [
             Expanded(
@@ -150,9 +151,45 @@ class _StatisticsState extends State<Statistics> {
                             child: Container(
                               height: 200,
                               width: MediaQuery.of(context).size.width,
-                              // color: Colors.blueAccent,
                             ),
                           ),
+                          Positioned(
+                              // coordinates of point on curve
+                              height: 200 * 0.4808500 - 40,
+                              width: MediaQuery.of(context).size.width *
+                                      0.3662200 +
+                                  180,
+                              child: Stack(
+                                alignment: Alignment.bottomCenter,
+                                children: [
+                                  Container(
+                                    width: 100,
+                                    height: 40,
+                                    decoration: BoxDecoration(
+                                      color: Colors.green.withOpacity(0.07),
+                                      borderRadius: BorderRadius.circular(10.0),
+                                      border: Border.all(
+                                        color: Colors.teal,
+                                        width: 0.5,
+                                      ),
+                                    ),
+                                    child: const Center(
+                                        child: Text(
+                                      '\$1,230',
+                                      style: TextStyle(
+                                          color: Colors.teal, fontSize: 20),
+                                    )),
+                                  ),
+                                  Container(
+                                    margin: const EdgeInsets.only(top: 47),
+                                    child: const Icon(
+                                      Icons.keyboard_arrow_down_outlined,
+                                      size: 30,
+                                      color: Colors.teal,
+                                    ),
+                                  ),
+                                ],
+                              ))
                         ],
                       ),
 
