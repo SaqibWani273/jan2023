@@ -1,9 +1,8 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-import 'statistics.dart';
+import 'widgets/statistics.dart';
 import 'models/data.dart';
 
 void main() {
@@ -30,25 +29,20 @@ void main() {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: ChangeNotifierProvider(
-        create: (context) => Data(context),
-        child: Consumer<Data>(
-          builder: (context, data, child) => MyApp(data),
-        ),
-      ),
+      home: const MyApp(),
     ),
   );
 }
 
 class MyApp extends StatefulWidget {
-  final Data _data;
-  const MyApp(this._data, {Key? key}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   State<MyApp> createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
+  Data data = Data();
   late final TabController _tabController = TabController(
     length: 4,
     vsync: this,
@@ -80,7 +74,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
             controller: _tabController,
             labelColor: Colors.black,
             indicatorColor: Colors.transparent,
-            tabs: widget._data.bottomIcons
+            tabs: data.bottomIcons
                 .asMap()
                 .map(
                   (int index, Map value) => MapEntry(

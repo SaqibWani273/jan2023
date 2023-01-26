@@ -2,9 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 
-class Data extends ChangeNotifier {
-  BuildContext context;
-  Data(this.context);
+class Data {
   List<Map<String, dynamic>> bottomIcons = [
     {
       'icon_outlined': Icons.home_outlined,
