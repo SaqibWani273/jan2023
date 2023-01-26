@@ -1,7 +1,9 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+import 'custom_painter.dart';
 import 'models/data.dart';
 
 class Statistics extends StatefulWidget {
@@ -86,58 +88,77 @@ class _StatisticsState extends State<Statistics> {
                         )
                         .toList(),
                   ),
-                  Stack(alignment: Alignment.topRight, children: [
-                    Container(),
-                    Container(
-                      height: 40.0,
-                      width: 150.0,
-                      margin: const EdgeInsets.only(right: 30.0, top: 30.0),
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 8.0,
-                      ),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8.0),
-                          border: Border.all(
-                            color: Colors.black,
-                            width: 1.0,
-                          )),
-                      child: DropdownButtonHideUnderline(
-                        child: DropdownButton(
-                          //to increase the height
-                          isExpanded: true,
-                          icon: const Icon(
-                            Icons.expand_more,
-                            color: Colors.black,
-                          ),
-                          value: 'Expense',
-                          items: [
-                            'Expense',
-                            'Expense1',
-                            'Expense2',
-                            'Expense3',
-                          ]
-                              .map((String value) => DropdownMenuItem(
-                                  value: value,
-                                  child: Text(
-                                    value,
-                                    style: const TextStyle(
-                                      color: Colors.black54,
-                                    ),
-                                  )))
-                              .toList(),
-                          onChanged: (value) {},
+                  //dropdown container
+                  Container(
+                    height: 40.0,
+                    width: 150.0,
+                    margin: const EdgeInsets.only(
+                      left: 250.0,
+                      top: 30.0,
+                    ),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8.0,
+                    ),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8.0),
+                        border: Border.all(
+                          color: Colors.black,
+                          width: 1.0,
+                        )),
+                    child: DropdownButtonHideUnderline(
+                      child: DropdownButton(
+                        //to increase the height
+                        isExpanded: true,
+                        icon: const Icon(
+                          Icons.expand_more,
+                          color: Colors.black,
                         ),
+                        value: 'Expense',
+                        items: [
+                          'Expense',
+                          'Expense1',
+                          'Expense2',
+                          'Expense3',
+                        ]
+                            .map((String value) => DropdownMenuItem(
+                                value: value,
+                                child: Text(
+                                  value,
+                                  style: const TextStyle(
+                                    color: Colors.black54,
+                                  ),
+                                )))
+                            .toList(),
+                        onChanged: (value) {},
                       ),
                     ),
-                  ]),
-                  Container(
-                    //curve and months container
-                    child: Column(children: [
-                      Container(
-                          //for curve
+                  ),
+                  Column(
+                    children: [
+                      Stack(
+                        children: [
+                          CustomPaint(
+                            painter: MyCustomPainter(),
+                            child: Container(
+                              height: 200,
+                              width: MediaQuery.of(context).size.width,
+                              // color: Colors.blueAccent,
+                            ),
                           ),
+                          CustomPaint(
+                            painter: MyCustomPainter1(),
+                            child: Container(
+                              height: 200,
+                              width: MediaQuery.of(context).size.width,
+                              // color: Colors.blueAccent,
+                            ),
+                          ),
+                        ],
+                      ),
+
+                      //months container
                       Container(
-                        margin: EdgeInsets.only(top: 200),
+                        margin: EdgeInsets.only(top: 20),
                         child: SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
                           child: Row(
@@ -150,15 +171,15 @@ class _StatisticsState extends State<Statistics> {
                                             style: TextStyle(fontSize: 20.0),
                                           ),
                                           SizedBox(
-                                            width: 42,
+                                            width: 41,
                                           )
                                         ],
                                       ))
                                   .toList()),
                         ),
                       )
-                    ]),
-                  )
+                    ],
+                  ),
                 ],
               ),
             ),

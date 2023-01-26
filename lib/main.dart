@@ -96,7 +96,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                         size: 40,
                         color: _tabController.index == index
                             ? Theme.of(context).primaryColor
-                            : Colors.black,
+                            : Colors.grey,
                       ),
                     ),
                   ),
